@@ -34,6 +34,11 @@ spring:
         url: ${monitoramentoHost}
         username: ${monitoramentoUser}
         password: ${monitoramentoPass}
+        instance:
+          metadata:
+            user:
+              name: ${actuatorUser}
+              password: ${actuatorPass}
 
 sistema:
   eureka:
