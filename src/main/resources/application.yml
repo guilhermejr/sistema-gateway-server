@@ -4,9 +4,10 @@ server:
 spring:
   application:
     name: gateway-server
+  main:
+    allow-bean-definition-overriding: true
   config:
     import: vault://
-
   cloud:
     vault:
       host: ${VAULT_HOST:localhost}
