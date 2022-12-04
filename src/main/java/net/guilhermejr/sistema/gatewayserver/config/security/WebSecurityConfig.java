@@ -14,12 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class WebSecurityConfig {
 
-    @Value("${sistema.eureka.login}")
-    private String eurekaLogin;
-
-    @Value("${sistema.eureka.senha}")
-    private String eurekaSenha;
-
     @Value("${spring.boot.admin.client.instance.metadata.user.name}")
     private String actuatorLogin;
 
@@ -42,11 +36,9 @@ public class WebSecurityConfig {
 
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
-        UserDetails eureka = User.builder()
-                .username(eurekaLogin).password(passwordEncoder().encode(eurekaSenha)).roles("ADMIN").build();
         UserDetails actuator = User.builder()
                 .username(actuatorLogin).password(passwordEncoder().encode(actuatorSenha)).roles("ACTUATOR").build();
-        return new InMemoryUserDetailsManager(eureka, actuator);
+        return new InMemoryUserDetailsManager(actuator);
     }
 
     @Bean
