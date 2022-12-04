@@ -46,7 +46,7 @@ eureka:
     serviceUrl:
       defaultZone: 'http://${sistema.eureka.login}:${sistema.eureka.senha}@${sistema.eureka.host}:8761/eureka'
   instance:
-    hostname: ${sistema.eureka.host}
+    hostname: 'gateway-server'
 
 management:
   endpoint:
