@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM openjdk:17
 LABEL maintainer="Guilherme Jr. <falecom@guilhermejr.net>"
 ENV TZ=America/Bahia
 ARG VAULT_HOST
