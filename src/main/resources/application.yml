@@ -36,6 +36,10 @@ spring:
           uri: lb://remedios-service/
           predicates:
             - Path=/remedios-service/**
+        - id: gastos-service
+          uri: lb://gastos-service/
+          predicates:
+            - Path=/gastos-service/**
   boot:
     admin:
       client:
