@@ -1,0 +1,93 @@
+<configuration>
+
+    <property name="graylogPort" value="12201" />
+    <property name="graylogHostDev" value="localhost" />
+    <property name="graylogHostProd" value="graylog" />
+    <springProperty name = "appname" source= "spring.application.name"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%green(%date) %highlight(%-5level) %yellow([%file:%line]) %blue(: %msg%n)</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="GELF_DEV" class="de.siegmar.logbackgelf.GelfUdpAppender">
+        <graylogHost>${graylogHostDev}</graylogHost>
+        <graylogPort>${graylogPort}</graylogPort>
+        <maxChunkSize>508</maxChunkSize>
+        <useCompression>true</useCompression>
+        <encoder class="de.siegmar.logbackgelf.GelfEncoder">
+            <originHost>${appname}</originHost>
+            <includeRawMessage>false</includeRawMessage>
+            <includeMarker>true</includeMarker>
+            <includeMdcData>true</includeMdcData>
+            <includeCallerData>true</includeCallerData>
+            <includeRootCauseData>true</includeRootCauseData>
+            <includeLevelName>true</includeLevelName>
+            <shortPatternLayout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%m%nopex</pattern>
+            </shortPatternLayout>
+            <fullPatternLayout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%m%n</pattern>
+            </fullPatternLayout>
+            <staticField>app_name:${appname}</staticField>
+            <staticField>os_arch:${os.arch}</staticField>
+            <staticField>os_name:${os.name}</staticField>
+            <staticField>os_version:${os.version}</staticField>
+        </encoder>
+    </appender>
+
+    <appender name="GELF_PROD" class="de.siegmar.logbackgelf.GelfUdpAppender">
+        <graylogHost>${graylogHostProd}</graylogHost>
+        <graylogPort>${graylogPort}</graylogPort>
+        <maxChunkSize>508</maxChunkSize>
+        <useCompression>true</useCompression>
+        <encoder class="de.siegmar.logbackgelf.GelfEncoder">
+            <originHost>${appname}</originHost>
+            <includeRawMessage>false</includeRawMessage>
+            <includeMarker>true</includeMarker>
+            <includeMdcData>true</includeMdcData>
+            <includeCallerData>true</includeCallerData>
+            <includeRootCauseData>true</includeRootCauseData>
+            <includeLevelName>true</includeLevelName>
+            <shortPatternLayout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%m%nopex</pattern>
+            </shortPatternLayout>
+            <fullPatternLayout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%m%n</pattern>
+            </fullPatternLayout>
+            <staticField>app_name:${appname}</staticField>
+            <staticField>os_arch:${os.arch}</staticField>
+            <staticField>os_name:${os.name}</staticField>
+            <staticField>os_version:${os.version}</staticField>
+        </encoder>
+    </appender>
+
+    <springProfile name="dev">
+
+        <root level="INFO">
+            <appender-ref ref="GELF_DEV" />
+            <appender-ref ref="STDOUT" />
+        </root>
+
+        <logger name="net.guilhermejr" additivity="false" level="DEBUG">
+            <appender-ref ref="GELF_DEV" />
+            <appender-ref ref="STDOUT"/>
+        </logger>
+
+    </springProfile>
+
+    <springProfile name="prod">
+
+        <root level="INFO">
+            <appender-ref ref="GELF_PROD" />
+        </root>
+
+        <logger name="net.guilhermejr" additivity="false" level="DEBUG">
+            <appender-ref ref="GELF_PROD" />
+        </logger>
+
+    </springProfile>
+
+</configuration>
