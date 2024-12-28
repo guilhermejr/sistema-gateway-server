@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   gateway-server:
     image: guilhermejr/sistema-gateway-server

@@ -24,22 +24,52 @@ spring:
           uri: lb://energia-service/
           predicates:
             - Path=/energia-service/**
+          metadata:
+            cors:
+              allowedOrigins: ${frontend}
+              allowedMethods: '*'
+              allowedHeaders: '*'
+              maxAge: 3600
         - id: autenticacao-service
           uri: lb://autenticacao-service/
           predicates:
             - Path=/autenticacao-service/**
+          metadata:
+            cors:
+              allowedOrigins: ${frontend}
+              allowedMethods: '*'
+              allowedHeaders: '*'
+              maxAge: 3600
         - id: supermercado-service
           uri: lb://supermercado-service/
           predicates:
             - Path=/supermercado-service/**
+          metadata:
+            cors:
+              allowedOrigins: ${frontend}
+              allowedMethods: '*'
+              allowedHeaders: '*'
+              maxAge: 3600
         - id: remedios-service
           uri: lb://remedios-service/
           predicates:
             - Path=/remedios-service/**
+          metadata:
+            cors:
+              allowedOrigins: ${frontend}
+              allowedMethods: '*'
+              allowedHeaders: '*'
+              maxAge: 3600
         - id: gastos-service
           uri: lb://gastos-service/
           predicates:
             - Path=/gastos-service/**
+          metadata:
+            cors:
+              allowedOrigins: ${frontend}
+              allowedMethods: '*'
+              allowedHeaders: '*'
+              maxAge: 3600
   boot:
     admin:
       client:
@@ -76,12 +106,3 @@ management:
   info:
     env:
       enabled: true
-
-info:
-  app:
-    name: @project.name@
-    description: @project.description@
-    version: @project.version@
-    encoding: @project.build.sourceEncoding@
-    java:
-      version: @java.version@
