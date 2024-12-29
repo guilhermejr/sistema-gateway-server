@@ -20,10 +20,6 @@ spring:
         application-name: gateway-server
     gateway:
       routes:
-        - id: frontend
-          uri: lb://frontend/
-          predicates:
-            - Path=/frontend/**
         - id: energia-service
           uri: lb://energia-service/
           predicates:
