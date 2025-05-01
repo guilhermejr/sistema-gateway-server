@@ -70,6 +70,16 @@ spring:
               allowedMethods: '*'
               allowedHeaders: '*'
               maxAge: 3600
+        - id: salario-service
+          uri: lb://salario-service/
+          predicates:
+            - Path=/salario-service/**
+          metadata:
+            cors:
+              allowedOrigins: ${frontend}
+              allowedMethods: '*'
+              allowedHeaders: '*'
+              maxAge: 3600
   boot:
     admin:
       client:
