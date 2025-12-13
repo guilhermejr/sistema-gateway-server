@@ -1,4 +1,4 @@
-FROM openjdk:21
+FROM amazoncorretto:21
 LABEL maintainer="Guilherme Jr. <falecom@guilhermejr.net>"
 ENV TZ=America/Bahia
 ARG VAULT_HOST

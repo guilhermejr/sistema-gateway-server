@@ -5,12 +5,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.5</version>
+        <version>3.5.8</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>net.guilhermejr.sistema</groupId>
     <artifactId>gateway-server</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.6</version>
     <name>gateway-server</name>
     <description>API Gateway</description>
     <properties>
