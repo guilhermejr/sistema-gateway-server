@@ -82,6 +82,16 @@ spring:
                   allowedMethods: '*'
                   allowedHeaders: '*'
                   maxAge: 3600
+            - id: saude-service
+              uri: lb://saude-service/
+              predicates:
+                - Path=/saude-service/**
+              metadata:
+                cors:
+                  allowedOrigins: ${frontend}
+                  allowedMethods: '*'
+                  allowedHeaders: '*'
+                  maxAge: 3600
   boot:
     admin:
       client:
