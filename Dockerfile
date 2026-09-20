@@ -6,5 +6,8 @@ ARG VAULT_TOKEN
 ENV VAULT_HOST=${VAULT_HOST}
 ENV VAULT_TOKEN=${VAULT_TOKEN}
 COPY sistema-gateway-server.jar sistema-gateway-server.jar
+HEALTHCHECK --interval=30s --timeout=5s --start-period=90s --retries=3 \
+  CMD curl -fsS http://localhost:8080/actuator/health | grep -q '"status":"UP"' || exit 1
+
 ENTRYPOINT ["java","-Dspring.profiles.active=prod","-jar","/sistema-gateway-server.jar"]
 EXPOSE 8080
