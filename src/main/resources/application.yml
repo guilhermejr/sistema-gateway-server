@@ -72,6 +72,16 @@ spring:
                   allowedMethods: '*'
                   allowedHeaders: '*'
                   maxAge: 3600
+            - id: ponto-service
+              uri: lb://ponto-service/
+              predicates:
+                - Path=/ponto-service/**
+              metadata:
+                cors:
+                  allowedOrigins: ${frontend}
+                  allowedMethods: '*'
+                  allowedHeaders: '*'
+                  maxAge: 3600
             - id: salario-service
               uri: lb://salario-service/
               predicates:

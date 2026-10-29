@@ -13,7 +13,7 @@ The **API gateway** — the single entry point. Routes external requests to the 
 
 ## Routes
 
-Defined in `application.yml`, one per service: `/autenticacao-service/**`, `/energia-service/**`, `/supermercado-service/**`, `/remedios-service/**`, `/gastos-service/**`, `/salario-service/**`, `/saude-service/**` — each to `lb://<service>/`.
+Defined in `application.yml`, one per service: `/autenticacao-service/**`, `/energia-service/**`, `/supermercado-service/**`, `/remedios-service/**`, `/gastos-service/**`, `/ponto-service/**`, `/salario-service/**`, `/saude-service/**` — each to `lb://<service>/`.
 
 There is **no route for `notificacao-service`**; it is internal only.
 
