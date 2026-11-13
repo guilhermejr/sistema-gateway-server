@@ -4,6 +4,10 @@ services:
     container_name: gateway-server
     restart: always
     env_file: /home/guilhermejr/secrets/gateway-server.env
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
     ports:
       - "127.0.0.1:8080:8080"
 
