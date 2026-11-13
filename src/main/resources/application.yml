@@ -130,11 +130,11 @@ eureka:
 management:
   endpoint:
     health:
-      show-details: always
+      show-details: never
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: health,info
   info:
     env:
       enabled: true
