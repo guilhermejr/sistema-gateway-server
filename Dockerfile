@@ -11,5 +11,7 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=90s --retries=3 \
 ENV HOME=/tmp
 USER 10001:10001
 
-ENTRYPOINT ["java","-Dspring.profiles.active=prod","-jar","/sistema-gateway-server.jar"]
+# Espera o Vault ficar pronto (no maximo 3 min) antes de iniciar, para nao
+# falhar e reiniciar em loop quando todos os containers sobem juntos no boot.
+ENTRYPOINT ["sh", "-c", "for i in $(seq 60); do curl -fsS -o /dev/null http://vault:8200/v1/sys/health && break; echo 'Aguardando o Vault...'; sleep 3; done; exec java -Dspring.profiles.active=prod -jar /sistema-gateway-server.jar"]
 EXPOSE 8080
