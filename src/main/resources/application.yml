@@ -72,6 +72,16 @@ spring:
                   allowedMethods: '*'
                   allowedHeaders: '*'
                   maxAge: 3600
+            - id: livros-service
+              uri: lb://livros-service/
+              predicates:
+                - Path=/livros-service/**
+              metadata:
+                cors:
+                  allowedOrigins: ${frontend}
+                  allowedMethods: '*'
+                  allowedHeaders: '*'
+                  maxAge: 3600
             - id: ponto-service
               uri: lb://ponto-service/
               predicates:
